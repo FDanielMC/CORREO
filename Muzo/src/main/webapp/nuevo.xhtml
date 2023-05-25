@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>AGENDA TU CONSULTAaa</title>
+    <!-- <link href="./dialogo.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    
+    
+</h:head>
+<h:body>
+
+<img  src="/img/logo.jpg" style="height: 200px; width: 200px;" />
+
+
+<a href="index.xhtml" class="ui-button ui-widget ui-state-default ui-corner-all">
+    <span class="ui-icon ui-icon-plus"></span>
+    <span>ADMIN</span>
+</a>
+
+
+    <div>
+        
+        <h:form id="buttonNewRegistration">
+
+                        
+                        <p:commandButton value="Agenda una cita con Liliana Aqui" icon="ui-icon-plus" actionListener="#{crudAppointmentBean.openNew}"
+                            update=":formulario-agendamiento-citas:informacion-cita" oncomplete="PF('DialogRegistration').show()">
+
+                        <p:resetInput target=":formulario-agendamiento-citas:informacion-cita"/>
+                        </p:commandButton>       
+
+                        
+        </h:form>
+
+
+  
+
+       <h:form id="formulario-agendamiento-citas">
+        <!-- Agregar CITAS CON LILIANA  -->
+        <p:dialog header="Completa el Siguiente Formulario" showEffect="fade" modal="true" width="60%" widgetVar="DialogRegistration" responsive="true">
+
+        
+            
+            <section class="container">
+                <div class="row">
+                    <h5 class="center-align">CONTACTO</h5>
+
+                
+                    <p:outputPanel id="informacion-cita">
+
+                        <p:outputPanel rendered="#{not empty crudAppointmentBean.selectedAppointment}">
+                        <article class="col s6 offset-s3">
+                            
+                                <div class="input-field">
+                                    <i class="material-icons prefix">perm_identity</i>
+                                    <p:inputText id="firstName" value="#{crudAppointmentBean.selectedAppointment.firstName}" placeholder="Nombre" required="true" />
+                                </div>
+            
+                                <div class="input-field">
+                                    <i class="material-icons prefix">person_pin</i>
+                                    <p:inputText id="lastName" value="#{crudAppointmentBean.selectedAppointment.lastName}" placeholder="Apellidos" required="true" />
+                                </div>
+            
+                                <div class="input-field">
+                                    <i class="material-icons prefix">email</i>
+                                    <p:inputText id="mail" type="email" value="#{crudAppointmentBean.selectedAppointment.mail}" placeholder="Email" required="true" />
+                                </div>
+            
+                                <div class="input-field">
+                                    <i class="material-icons prefix">mode_edit</i>
+                                    <p:inputText id="phone" type="number"  value="#{crudAppointmentBean.selectedAppointment.phone}" placeholder="Celular" required="true"/>
+                                </div>
+
+                                <div class="input-field">
+                                    <i class="material-icons prefix">mode_edit</i>
+                                    <p:inputText id="status" value="#{crudAppointmentBean.selectedAppointment.status}" placeholder="Estado" required="true"/>
+                                </div>
+
+                                <div class="input-field">
+                                    <i class="material-icons prefix">mode_edit</i>
+                                    <p:inputText id="description" value="#{crudAppointmentBean.selectedAppointment.description}" placeholder="¿Cual es la razón de tu consulta?" required="true"/>
+                                </div>
+
+                                <div class="input-field">
+                                    <i class="material-icons prefix">mode_edit</i>
+                                    <p:inputText id="date" type="datetime-local" value="#{crudAppointmentBean.selectedAppointment.date}" placeholder="Fecha/Hora" required="true"/>
+                                </div>
+
+
+            
+                        </article>
+                        </p:outputPanel>
+                    </p:outputPanel>
+
+                </div>
+                
+            </section>
+
+
+                    <!--  Confirmación  -->    
+                    <f:facet name="footer">
+
+
+                    <p:commandButton class="waves-effect waves-light btn material-icons right" value="Agendar"  actionListener="#{crudAppointmentBean.saveAppointment(crudAppointmentBean.selectedAppointment.getMail(),crudAppointmentBean.selectedAppointment.getFirstName(), crudAppointmentBean.selectedAppointment.getDate())}"
+                        update="informacion-cita :buttonNewRegistration" process="informacion-cita @this"/>
+    
+    
+                    <p:commandButton class="waves-effect waves-light btn material-icons right" value="Cancelar" type="button" />
+    
+                </f:facet>
+    
+    
+                <p:messages for="somekey"/>
+                
+        </p:dialog>
+
+
+
+    </h:form>
+
+
+        
+    </div>
+
+
+   
+</h:body>
+</html>

@@ -1,0 +1,10 @@
+com\project\muzo\Main.class
+com\project\muzo\model\Appointment.class
+com\project\muzo\service\AppointmentService.class
+com\project\muzo\repository\AdminRepository.class
+com\project\muzo\repository\AppointmentRepository.class
+com\project\muzo\beans\CrudAppointmentBean.class
+com\project\muzo\beans\LoginBean.class
+com\project\muzo\service\AdminService.class
+com\project\muzo\model\Admin.class
+com\project\muzo\service\Muzos.class

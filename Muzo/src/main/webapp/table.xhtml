@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Panel de AdministracionS</title>
+
+</h:head>
+<h:body>
+    <div >
+        
+      
+        <div>
+            <center><img  src="/img/logo.jpg" style="height: 200px; width: 200px;" /></center>
+        </div>
+
+       
+
+    </div>
+    <div>
+        <h:form id="form" >
+            <p:growl for="anotherkey"/>
+            <div>
+                <p:toolbar >
+                    <p:toolbarGroup>
+
+                        <a href="nuevo.xhtml" class="ui-button ui-widget ui-state-default ui-corner-all">
+                            <span class="ui-icon ui-icon-plus"></span>
+                            <span>Crear Consulta</span>
+                        </a>
+                        
+
+
+
+            
+                        <p:commandButton value="Actualizar" icon="ui-icon-refresh" update=":form :form:dt-appointments " action="#{crudAppointmentBean.refresh}" 
+                         style="margin-right: .5rem" oncomplete="PF('dtAppointments').filter()" >
+                        </p:commandButton>
+                    </p:toolbarGroup>
+                </p:toolbar>
+            </div>
+
+            
+        
+ 
+            <div>
+
+
+                    <p:dataTable id="dt-appointments" widgetVar="dtAppointments" var="appointment" value="#{crudAppointmentBean.appointments}"
+             reflow="true"  
+             rowKey="#{appointment.appointmentId}" paginator="false" rowSelectMode="add" paginatorPosition="bottom">
+
+
+            
+
+
+                    <f:facet name="header">
+                        <div>
+                            <span style="font-weight: bold">Lista Citas para Consulta</span>
+                        </div>
+                    </f:facet>
+                    <p:column headerText="Id">
+                        <h:outputText value="#{appointment.appointmentId}" />
+                    </p:column>
+                    <p:column headerText="Correo" filterMatchMode="startsWith" filterBy="#{appointment.mail}" filterStyle="display:none">
+                        <h:outputText value="#{appointment.mail}" />
+                    </p:column>
+                    <p:column headerText="Nombre" filterMatchMode="contains" filterBy="#{appointment.firstName} #{appointment.lastName} " filterStyle="display:none">
+                        <h:outputText value="#{appointment.firstName} #{appointment.lastName}" />
+                    </p:column>
+                    <p:column headerText="Contraseña">
+                        <h:outputText value="#{appointment.phone}" />
+                    </p:column>
+                    <p:column headerText="Estado" filterMatchMode="startsWith" filterBy="#{appointment.status}" filterStyle="display:none">
+                        <h:outputText value="#{appointment.status}" />
+                    </p:column>
+                    <p:column headerText="Proposito del Caso" filterMatchMode="startsWith" filterBy="#{appointment.description}" filterStyle="display:none">
+                        <h:outputText value="#{appointment.description}" />
+                    </p:column>
+                    <p:column headerText="Fecha Consulta" filterMatchMode="startsWith" filterBy="#{appointment.date}" filterStyle="display:none">
+                        <h:outputText value="#{appointment.date}" />
+                    </p:column>
+
+                 
+                    <p:column exportable="false"> 
+                      
+                        <p:commandButton icon="ui-icon-pencil"> </p:commandButton>
+                    </p:column>
+                    
+                </p:dataTable>
+            </div>
+            
+            <div>
+                <h:commandButton value="Cerrar Sesion" action="index.xhtml?faces-redirect=true"/>
+            </div>
+          
+
+
+
+
+
+
+        </h:form>
+
+
+
+
+
+
+
+       
+    </div>
+</h:body>
+</html>
